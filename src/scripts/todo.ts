@@ -1,7 +1,3 @@
-import "./style.scss";
-
-main();
-
 let editingId = 0;
 
 async function getTodosFromServer(){
@@ -21,11 +17,7 @@ async function sendTodoToServer(taskName: string){
     )
 }
 
-async function main(){
-    await refreshTodos();
-}
-
-async function refreshTodos(){
+export async function refreshTodos(){
     let todos = await getTodosFromServer();
     renderTodosHtml(todos); 
 }
