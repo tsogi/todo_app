@@ -2,5 +2,6 @@
 Todo app
 
 ## How to run the app:
-npx webpack --watch
-run the app using vs code live server or double clicking the file
+Step 1. Run `npm install`
+Step 2. Run `npm run serve`
+Step 3. Start coding inside `/src` folder
