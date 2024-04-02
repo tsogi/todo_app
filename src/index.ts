@@ -1,3 +1,5 @@
+import "./style.scss";
+
 main();
 
 let editingId = 0;
