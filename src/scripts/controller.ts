@@ -1,10 +1,11 @@
-import { getTodosFromServer, sendTodoToServer, deleteTodoOnServer, editTodoNameOnServer, editTodoCompletionOnServer } from "./server";
+import { Server } from "./server";
 import { drawTodosHtml, getTextInputValue, setTextInputValue, updateTodosCount, submitBtnListener, isTodoChecked } from "./dom";
 
 let editingId = 0;
+let ServerObj = new Server();
 
 export async function refreshTodos(){
-    let todos = await getTodosFromServer();
+    let todos = await ServerObj.getTodosFromServer();
     renderTodosHtml(todos); 
 }
 
@@ -16,7 +17,7 @@ function renderTodosHtml(todos: any[]) {
 }
 
 async function deleteTodo(todoId: number){
-    await deleteTodoOnServer(todoId);
+    await ServerObj.deleteTodoOnServer(todoId);
 
     await refreshTodos();
 }
@@ -53,7 +54,7 @@ function handleSubmitClick(){
 async function editTodo(){
     let updatedName = getTextInputValue();
 
-    await editTodoNameOnServer(updatedName, editingId);
+    await ServerObj.editTodoNameOnServer(updatedName, editingId);
 
     await refreshTodos();
 
@@ -64,7 +65,7 @@ async function editTodo(){
 
 async function createTodo(){
     let todoName = getTextInputValue();
-    await sendTodoToServer(todoName);
+    await ServerObj.sendTodoToServer(todoName);
 
     await refreshTodos();
 }
@@ -72,7 +73,7 @@ async function createTodo(){
 async function updateTaskStatus(todoId: number){
     let isChecked = isTodoChecked(todoId);
 
-    await editTodoCompletionOnServer(todoId, isChecked);
+    await ServerObj.editTodoCompletionOnServer(todoId, isChecked);
 
     await refreshTodos();
 }
