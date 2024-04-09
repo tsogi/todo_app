@@ -1,5 +1,5 @@
 import "../styles/todo.scss";
-import { refreshTodos } from "./todo";
+import { refreshTodos } from "./controller";
 
 main();
 
